@@ -6,14 +6,18 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:grpc": "protoc -I=../proto --plugin=$(pwd)/node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out=src/generated --ts_proto_opt=esModuleInterop,outputServices=grpc-js ../proto/*.proto"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.13.4",
     "@privy-io/react-auth": "^2.17.3",
     "@privy-io/wagmi": "^1.0.5",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "ethers": "^6.15.0",
     "lucide-react": "^0.525.0",
     "next": "15.3.4",
     "next-intl": "^4.3.4",
@@ -34,6 +38,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "postcss": "^8.5.1",
+    "ts-proto": "^2.7.5",
     "typescript": "^5"
   }
 }
