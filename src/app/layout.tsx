@@ -1,9 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import PrivyWrapper from "@/components/PrivyWrapper"
 import { Toaster } from "sonner"
+import { Inter } from "next/font/google"
+
+import PrivyWrapper from "@/components/PrivyWrapper"
+import AppHeader from "@/components/AppHeader"
+import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,11 +20,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          src="https://telegram.org/js/telegram-web-app.js?56"
+          async
+          defer
+        />
+      </head>
       <body className={`${inter.className} bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen`}>
         <PrivyWrapper>
           <div className="min-h-screen bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-indigo-900/20 backdrop-blur-sm">
-            <div className="container mx-auto px-4 py-6 max-w-md">{children}</div>
+            <div className="container mx-auto px-4 py-6 max-w-md">
+              <AppHeader />
+              <main className="space-y-6">{children}</main>
+            </div>
           </div>
           <Toaster
             theme="dark"
