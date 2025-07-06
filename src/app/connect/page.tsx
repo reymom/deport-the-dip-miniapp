@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { usePrivyTelegram } from "@/hooks/usePrivyTelegram"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import Link from "next/link"
 
 interface WalletConnectProps {
     action?: string | null
@@ -189,7 +190,7 @@ function WalletConnect({ }: WalletConnectProps = {}) {
                                     variant="outline"
                                     className="w-full bg-transparent border-slate-600 text-white hover:bg-slate-800"
                                 >
-                                    View Leaderboard
+                                    View <Link href="/leaderboard">Leaderboard </Link>
                                 </Button>
                                 <Button onClick={disconnectWallet} variant="destructive" className="w-full">
                                     Disconnect

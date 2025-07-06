@@ -7,7 +7,7 @@ export default function AppHeader() {
             <Link href="/" className="inline-block">
                 <div className="relative inline-block">
                     <Image
-                        src="/deport-the-dip.png"
+                        src="/deport-the-dip-no-bg.png"
                         alt="Deport The Dip"
                         width={100}
                         height={100}

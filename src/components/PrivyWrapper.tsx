@@ -2,6 +2,7 @@
 
 import { ReactNode, useState, useEffect } from "react";
 import { PrivyProvider } from "@privy-io/react-auth";
+import { defineChain } from 'viem';
 import icon from "@/../public/deport-the-dip.png";
 
 export default function PrivyWrapper({ children }: { children: ReactNode }) {
@@ -28,6 +29,28 @@ export default function PrivyWrapper({ children }: { children: ReactNode }) {
     return null;
   }
 
+  const bsc = defineChain({
+    id: 56,
+    name: 'BNB Smart Chain',
+    network: 'bsc',
+    nativeCurrency: {
+      name: 'BNB',
+      symbol: 'BNB',
+      decimals: 18,
+    },
+    rpcUrls: {
+      default: {
+        http: ['https://bsc-dataseed.binance.org'],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: 'BscScan',
+        url: 'https://bscscan.com',
+      },
+    },
+  });
+
   return (
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
@@ -38,6 +61,7 @@ export default function PrivyWrapper({ children }: { children: ReactNode }) {
           accentColor: "#3b82f6",
           logo: icon.src,
         },
+        supportedChains: [bsc],
         embeddedWallets: {
           ethereum: {
             createOnLogin: "users-without-wallets",
