@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🥲 Trading Tears MiniApp — Deport The Dip
 
-## Getting Started
+This is the **Telegram MiniApp frontend** for the **Deport The Dip** trading game.
 
-First, run the development server:
+It allows users to:
+
+- Connect their wallet via **Privy**
+- Execute swaps via **PancakeSwap**
+- View the leaderboard and follow other traders
+- Sign transactions directly in the MiniApp (non-delegated flow)
+
+---
+
+## ⚡️ Quick Start
+
+Install dependencies:
 
 ```bash
+npm install
+# or
+bun install
+```
+
+Run the development server:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 # or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔁 gRPC Codegen
 
-## Learn More
+Before starting, make sure to generate the gRPC TypeScript bindings:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run generate:grpc
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This compiles protobufs from `proto/` into `src/generated/`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Tech Stack
 
-## Deploy on Vercel
+- Next.js App Router
+- Tailwind CSS
+- Privy for authentication and wallets
+- gRPC-Web for backend communication
+- Telegram MiniApp + deep linking
+- The Graph for onchain leaderboard stats
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🪄 Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🧠 Connect wallet with Privy
+- 🔄 Build & sign swaps (on-chain via Pancake)
+- 📊 Leaderboard UI with follow button
+- 🌐 API routes to call gRPC server for tx build/send
+- 🖼 Fully embeddable as Telegram MiniApp
+
+Built with 🧠 + 🥲 for ETH Cannes 2025.
