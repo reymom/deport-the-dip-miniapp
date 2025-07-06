@@ -2,13 +2,25 @@
 
 import { credentials } from "@grpc/grpc-js";
 import { TransactionServiceClient } from "@/generated/transaction";
+import { SwapServiceClient } from "@/generated/pancake";
 
-export function getGrpcClient() {
+export function getTxGrpcClient() {
   if (typeof window !== "undefined") {
-    throw new Error("getGrpcClient() should only be used on the server");
+    throw new Error("getTxGrpcClient() should only be used on the server");
   }
 
   return new TransactionServiceClient(
+    process.env.NEXT_PUBLIC_DEFI_GRPC_ENDPOINT!,
+    credentials.createInsecure()
+  );
+}
+
+export function getSwapGrpcClient() {
+  if (typeof window !== "undefined") {
+    throw new Error("getSwapGrpcClient() should only be used on the server");
+  }
+
+  return new SwapServiceClient(
     process.env.NEXT_PUBLIC_DEFI_GRPC_ENDPOINT!,
     credentials.createInsecure()
   );

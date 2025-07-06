@@ -1,7 +1,7 @@
 import { ServiceError, status as GrpcStatus } from "@grpc/grpc-js";
 import { NextRequest, NextResponse } from "next/server";
 
-import { getGrpcClient } from "@/lib/grpc";
+import { getTxGrpcClient } from "@/lib/grpc";
 import {
   BuildTxRequest,
   BuildTxResponse,
@@ -23,9 +23,11 @@ export async function POST(req: NextRequest) {
       userAddress: user_address,
       pancake,
     });
-    const { unsignedTxBase64, txInfo } = await buildUnsignedTxAsync(buildReq);
+    const { unsignedTxBase64, txInfo, txParams } = await buildUnsignedTxAsync(
+      buildReq
+    );
 
-    return NextResponse.json({ unsignedTxBase64, txInfo });
+    return NextResponse.json({ unsignedTxBase64, txInfo, txParams });
   } catch (e: unknown) {
     let http = 500;
     let msg = "Unknown error";
@@ -50,7 +52,7 @@ export async function POST(req: NextRequest) {
 async function buildUnsignedTxAsync(
   buildReq: BuildTxRequest
 ): Promise<BuildTxResponse> {
-  const client = getGrpcClient();
+  const client = getTxGrpcClient();
 
   return new Promise((resolve, reject) => {
     client.buildUnsignedTx(buildReq, (err, res) => {
